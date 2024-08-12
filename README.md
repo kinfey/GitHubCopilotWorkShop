@@ -1,2 +1,27 @@
-# GitHubCopilotWorkShop
-This is workshop for GitHub Copilot
+# GitHubCopilotWorkShop 
+
+
+本实验是给到 GitHub Copilot Workshop 的线上练习，通过该练习，我们可以掌握 GitHub Copilot, GitHub Copilot Chat ,以及 GitHub Copilot 管理的相关功能。
+
+
+## **环境要求**
+
+在该 Workshop 中，建议采用 GitHub Codespaces 来完成所有内容
+
+
+## **Lab**
+
+随堂练习，通过该练习，我们可以巩固不同的知识点
+
+- **lab1** GitHub Copilot 十大神技
+- **lab2** 通过 GitHub Copilot Chat，用 .NET 创建一个用户系统.或许 .NET 不是您最熟悉的，但在 GitHub Copilot 的辅助下，您可以快速创建一个全新的项目
+- **lab3** GitHub Copilot Chat Agent 功能强大，我们可以通过它快速创建一个项目
+- **lab4** 通过 GitHub Copilot Metric API 快速了解 GitHub Copilot 的使用情况
+
+
+## **HOL**
+
+动手实验，结合不同知识点，完成练习
+
+- **01** 企业场景的思考
+- **02** 如何快速构建应用场景
