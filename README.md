@@ -15,7 +15,7 @@
 2. OpenJDK 21.0.4
 3. NodeJS 20.16.0
 4. Python 3.10.12(conda activate pydev)
-5. 以及 .NET / Java / Python 的 Nodebook 环境
+5. .NET / Java / Python 的 Notebook 环境
 
 
 ## **👩🏻‍🔬Lab**
