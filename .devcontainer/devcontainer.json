@@ -29,7 +29,8 @@
 				"vscjava.vscode-java-pack",
 				"ms-toolsai.jupyter",
 				"GitHub.copilot",
-				"GitHub.copilot-chat"
+				"GitHub.copilot-chat",
+				"vscjava.vscode-spring-initializr"
 			]
 		}
 	},
