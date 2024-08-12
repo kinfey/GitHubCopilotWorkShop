@@ -1,6 +1,9 @@
 # GitHubCopilotWorkShop 
 
 
+![logo](./imgs/logo.png)
+
+
 本实验是给到 GitHub Copilot Workshop 的线上练习，通过该练习，我们可以掌握 GitHub Copilot, GitHub Copilot Chat ,以及 GitHub Copilot 管理的相关功能。
 
 
