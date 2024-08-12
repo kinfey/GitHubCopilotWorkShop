@@ -6,7 +6,13 @@
 
 ## **环境要求**
 
-在该 Workshop 中，建议采用 GitHub Codespaces 来完成所有内容
+在该 Workshop 中，建议采用 GitHub Codespaces 来完成所有内容, 已经配置
+
+1. .NET 8
+2. OpenJDK 21.0.4
+3. NodeJS 20.16.0
+4. Python 3.10.12(conda activate pydev)
+5. 以及 .NET / Java / Python 的 Nodebook 环境
 
 
 ## **Lab**
