@@ -19,3 +19,11 @@ conda activate $ENV_NAME
 wget https://github.com/padreati/rapaio-jupyter-kernel/releases/download/1.3.0/rapaio-jupyter-kernel-1.3.0.jar
 java -jar ./rapaio-jupyter-kernel-1.3.0.jar -i -auto
 rm -r ./rapaio-jupyter-kernel-1.3.0.jar
+
+# Create ppt directory if it doesn't exist
+if [ ! -d "/workspaces/GitHubCopilotWorkShop/ppt" ]; then
+    mkdir /workspaces/GitHubCopilotWorkShop/ppt
+    echo "ppt directory created"
+else
+    echo "ppt directory already exists"
+fi
