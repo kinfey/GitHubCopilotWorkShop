@@ -14,7 +14,8 @@ namespace ChengFenStore.Services
 
         public Order CreateOrder(Order order)
         {
-            return _orderRepository.AddOrder(order);
+            _orderRepository.AddOrder(order);
+            return order;
         }
 
         public Order GetOrderById(int id)
@@ -29,6 +30,9 @@ namespace ChengFenStore.Services
             {
                 order.OrderStatus = "已支付";
                 _orderRepository.UpdateOrder(order);
+                // Save changes to the database
+                // Assuming _orderRepository is using a DbContext, call SaveChanges() here
+                // _orderRepository.SaveChanges();
             }
             return order;
         }
