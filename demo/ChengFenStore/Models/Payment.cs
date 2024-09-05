@@ -7,5 +7,10 @@ namespace ChengFenStore.Models
         public string PaymentMethod { get; set; }
         public string PaymentStatus { get; set; }
         public List<PaymentStatus> PaymentStatusHistory { get; set; }
+
+        public Payment()
+        {
+            PaymentStatusHistory = new List<PaymentStatus>();
+        }
     }
 }
