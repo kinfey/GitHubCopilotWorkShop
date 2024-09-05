@@ -5,37 +5,40 @@ namespace ChengFenStore.Services
 {
     public class OrderService
     {
-        private readonly OrderRepository _orderRepository;
+        private readonly AppDbContext _context;
 
-        public OrderService(OrderRepository orderRepository)
+        public OrderService(AppDbContext context)
         {
-            _orderRepository = orderRepository;
+            _context = context;
         }
 
         public Order CreateOrder(Order order)
         {
-            return _orderRepository.AddOrder(order);
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+            return order;
         }
 
         public Order GetOrderById(int id)
         {
-            return _orderRepository.GetOrderById(id);
+            return _context.Orders.FirstOrDefault(o => o.OrderId == id);
         }
 
         public Order ConfirmOrder(int id)
         {
-            var order = _orderRepository.GetOrderById(id);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (order != null)
             {
                 order.OrderStatus = "已支付";
-                _orderRepository.UpdateOrder(order);
+                _context.Orders.Update(order);
+                _context.SaveChanges();
             }
             return order;
         }
 
         public Order TrackOrder(int id)
         {
-            return _orderRepository.GetOrderById(id);
+            return _context.Orders.FirstOrDefault(o => o.OrderId == id);
         }
     }
 }

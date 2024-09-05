@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ChengFenStore.Services;
 using ChengFenStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChengFenStore.Controllers
 {
@@ -15,6 +16,7 @@ namespace ChengFenStore.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register(UserRegistrationRequest request)
         {
@@ -26,6 +28,7 @@ namespace ChengFenStore.Controllers
             return BadRequest(result);
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login(UserLoginRequest request)
         {
@@ -35,6 +38,19 @@ namespace ChengFenStore.Controllers
                 return Ok(result);
             }
             return Unauthorized(result);
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public IActionResult GetUserProfile()
+        {
+            var userId = User.Identity.Name;
+            var userProfile = _userService.GetUserProfile(userId);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+            return Ok(userProfile);
         }
     }
 }

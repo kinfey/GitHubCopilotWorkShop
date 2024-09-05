@@ -1,5 +1,10 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using ChengFenStore.Data;
 using ChengFenStore.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ChengFenStore.Services
 {
@@ -12,10 +17,12 @@ namespace ChengFenStore.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IConfiguration _configuration;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
+            _configuration = configuration;
         }
 
         public UserRegistrationResponse Register(UserRegistrationRequest request)
@@ -61,11 +68,32 @@ namespace ChengFenStore.Services
                 };
             }
 
+            // Generate JWT token
+            var token = GenerateJwtToken(user);
+
             return new UserLoginResponse
             {
                 Success = true,
-                Message = "Login successful."
+                Message = "Login successful.",
+                Token = token
             };
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, user.PhoneNumber)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }

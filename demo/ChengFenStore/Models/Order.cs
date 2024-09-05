@@ -7,5 +7,6 @@ namespace ChengFenStore.Models
         public string ProductDetails { get; set; }
         public string DeliveryMethod { get; set; }
         public string OrderStatus { get; set; }
+        public List<OrderStatus> OrderStatusHistory { get; set; }
     }
 }
