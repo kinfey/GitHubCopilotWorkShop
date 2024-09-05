@@ -6,5 +6,6 @@ namespace ChengFenStore.Models
         public int OrderId { get; set; }
         public string PaymentMethod { get; set; }
         public string PaymentStatus { get; set; }
+        public List<PaymentStatus> PaymentStatusHistory { get; set; }
     }
 }

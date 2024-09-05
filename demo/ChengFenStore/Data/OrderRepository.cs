@@ -1,6 +1,7 @@
 using ChengFenStore.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChengFenStore.Data
 {
@@ -13,28 +14,28 @@ namespace ChengFenStore.Data
 
     public class OrderRepository : IOrderRepository
     {
-        private readonly List<Order> _orders = new List<Order>();
+        private readonly AppDbContext _context;
+
+        public OrderRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public void AddOrder(Order order)
         {
-            _orders.Add(order);
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
 
         public Order GetOrderById(int orderId)
         {
-            return _orders.FirstOrDefault(o => o.OrderId == orderId);
+            return _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
         }
 
         public void UpdateOrder(Order order)
         {
-            var existingOrder = GetOrderById(order.OrderId);
-            if (existingOrder != null)
-            {
-                existingOrder.UserId = order.UserId;
-                existingOrder.ProductDetails = order.ProductDetails;
-                existingOrder.DeliveryMethod = order.DeliveryMethod;
-                existingOrder.OrderStatus = order.OrderStatus;
-            }
+            _context.Orders.Update(order);
+            _context.SaveChanges();
         }
     }
 }

@@ -5,11 +5,11 @@ namespace ChengFenStore.Services
 {
     public class PaymentService
     {
-        private readonly PaymentRepository _paymentRepository;
+        private readonly AppDbContext _context;
 
-        public PaymentService(PaymentRepository paymentRepository)
+        public PaymentService(AppDbContext context)
         {
-            _paymentRepository = paymentRepository;
+            _context = context;
         }
 
         public bool ProcessPayment(Payment payment)
@@ -17,13 +17,14 @@ namespace ChengFenStore.Services
             // Implement payment processing logic here
             // For example, call external payment gateway API and update payment status
             payment.PaymentStatus = "Processed";
-            _paymentRepository.AddPayment(payment);
+            _context.Payments.Add(payment);
+            _context.SaveChanges();
             return true;
         }
 
         public List<Payment> GetPaymentRecords()
         {
-            return _paymentRepository.GetPayments();
+            return _context.Payments.ToList();
         }
     }
 }

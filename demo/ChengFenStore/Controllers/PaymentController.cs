@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ChengFenStore.Services;
 using ChengFenStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChengFenStore.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PaymentController : ControllerBase

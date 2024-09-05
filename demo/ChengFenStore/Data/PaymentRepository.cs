@@ -1,24 +1,40 @@
 using ChengFenStore.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ChengFenStore.Data
 {
-    public class PaymentRepository
+    public interface IPaymentRepository
     {
-        private readonly List<Payment> _payments = new List<Payment>();
+        void AddPayment(Payment payment);
+        List<Payment> GetPayments();
+        Payment GetPaymentById(int paymentId);
+    }
+
+    public class PaymentRepository : IPaymentRepository
+    {
+        private readonly AppDbContext _context;
+
+        public PaymentRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public void AddPayment(Payment payment)
         {
-            _payments.Add(payment);
+            _context.Payments.Add(payment);
+            _context.SaveChanges();
         }
 
         public List<Payment> GetPayments()
         {
-            return _payments;
+            return _context.Payments.ToList();
         }
 
         public Payment GetPaymentById(int paymentId)
         {
-            return _payments.FirstOrDefault(p => p.PaymentId == paymentId);
+            return _context.Payments.FirstOrDefault(p => p.PaymentId == paymentId);
         }
     }
 }
