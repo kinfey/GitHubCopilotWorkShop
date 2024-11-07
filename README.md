@@ -24,7 +24,7 @@
 
 - **🧪lab1** GitHub Copilot 十大神技  👉[点击进入](./lab/01.Top10Skills.md)
 - **🧪lab2** 通过 GitHub Copilot Chat，用 .NET 创建一个用户系统.或许 .NET 不是您最熟悉的，但在 GitHub Copilot 的辅助下，您可以快速创建一个全新的项目 👉[点击进入](./lab/02.chat.md)
-- **🧪lab3** GitHub Copilot Chat Agent 功能强大，我们可以通过它快速创建一个项目 👉[点击进入](./lab/03.agents.md)
+- **🧪lab3** GitHub Copilot Chat Agent 功能强大，我们可以通过它快速创建一个项目 👉[点击进入](./lab/03.agent.md)
 - **🧪lab4** 通过 GitHub Copilot Metric API 快速了解 GitHub Copilot 的使用情况 👉[点击进入](./lab/04.metric.md)
 
 
