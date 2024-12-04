@@ -26,12 +26,6 @@
 - **🧪lab2** 通过 GitHub Copilot Chat，用 .NET 创建一个用户系统.或许 .NET 不是您最熟悉的，但在 GitHub Copilot 的辅助下，您可以快速创建一个全新的项目 👉[点击进入](./lab/02.chat.md)
 - **🧪lab3** GitHub Copilot Chat Agent 功能强大，我们可以通过它快速创建一个项目 👉[点击进入](./lab/03.agent.md)
 - **🧪lab4** 通过 GitHub Copilot Agent 快速了解您的开源项目 👉[点击进入](./lab/04.agent2.md)
-- **🧪lab5** 利用 GitHub Model 和 GitHub Copilot 创建您的第一个聊天应用 👉[点击进入](./lab/04.agent2.md)
+- **🧪lab5** 利用 GitHub Model 和 GitHub Copilot 创建您的第一个聊天应用 👉[点击进入](./lab/05.work.md)
 
 
-## **🛠️HOL**
-
-动手实验，结合不同知识点，完成练习
-
-- **👨🏻‍💻01** 企业场景的思考 👉[点击进入](./hol/01/README.md)
-- **👨🏻‍💻02** 如何快速构建应用场景 👉[点击进入](./hol/02/README.md)
