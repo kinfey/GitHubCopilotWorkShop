@@ -152,3 +152,69 @@ var countries = new[] { "Spain", "France", "Germany", "Italy", "Portugal", "Swed
 选择MakeZipFile的内容
 
 在"BRUSHES"部分，点击"可读性"，看看如何添加注释以及将拥有简短名称的变量重命名为更容易理解的名称。
+
+## 使用 Docker 构建、运行和测试应用程序
+
+### 构建 Docker 镜像
+
+在 `hol/02/dotnet` 目录中创建一个名为 `Dockerfile` 的文件，并添加以下内容：
+
+```dockerfile
+# Use the official .NET 7.0 SDK image as a build environment
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+WORKDIR /app
+
+# Copy the csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the entire project and build the release
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+WORKDIR /app
+COPY --from=build-env /app/out .
+
+# Expose port 80
+EXPOSE 80
+
+# Set the entry point for the application
+ENTRYPOINT ["dotnet", "MinimalAPI.dll"]
+```
+
+### 构建 Docker 镜像
+
+在 `hol/02/dotnet` 目录中打开终端并运行以下命令以构建 Docker 镜像：
+
+```bash
+docker build -t minimalapi .
+```
+
+### 运行 Docker 容器
+
+构建完成后，运行以下命令以启动 Docker 容器：
+
+```bash
+docker run -d -p 8080:80 --name minimalapi minimalapi
+```
+
+### 测试应用程序
+
+应用程序启动后，可以使用以下命令测试应用程序：
+
+```bash
+curl http://localhost:8080/register -d '{"PhoneNumber":"1234567890","Name":"Test User","Password":"password"}' -H "Content-Type: application/json"
+curl http://localhost:8080/login -d '{"PhoneNumber":"1234567890","Password":"password"}' -H "Content-Type: application/json"
+curl http://localhost:8080/verify?phoneNumber=1234567890
+curl http://localhost:8080/menu
+curl http://localhost:8080/createOrder -d '{"Id":1,"Product":"Test Product","Quantity":1,"DeliveryMethod":"Delivery"}' -H "Content-Type: application/json"
+curl http://localhost:8080/confirmOrder?orderId=1
+curl http://localhost:8080/orderStatus?orderId=1
+curl http://localhost:8080/processPayment -d '{"OrderId":1,"PaymentMethod":"CreditCard","Amount":100.00}' -H "Content-Type: application/json"
+curl http://localhost:8080/paymentRecords
+curl http://localhost:8080/manageUsers
+curl http://localhost:8080/manageOrders
+curl http://localhost:8080/managePayments
+```
